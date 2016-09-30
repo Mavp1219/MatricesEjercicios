@@ -267,6 +267,9 @@ public class Principal extends javax.swing.JFrame {
         nf = tblTablaInicial.getRowCount();
         nc = tblTablaInicial.getColumnCount();
         Helper.limpiarTabla(tblTablaResultado);
+        if (nc == nf) {
+            aux=true;
+        }
         switch (op) {
             case 0:
                 if(aux)Helper.DiagonalSecundaria(tblTablaInicial, tblTablaResultado);

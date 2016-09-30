@@ -222,6 +222,14 @@ public class Principal extends javax.swing.JFrame {
                     txtNumerofilas.setText("");
                     txtNumerocolumnas.setText("");
                     txtNumerofilas.requestFocusInWindow();
+                }
+                if (nf <= 5 && nc <= 5) {
+                    JOptionPane.showMessageDialog(this, "La matriz es demasiado pequeña", "Error", JOptionPane.ERROR_MESSAGE);
+                    Helper.tablaPorDefecto(tblTablaInicial);
+                    Helper.tablaPorDefecto(tblTablaResultado);
+                    txtNumerofilas.setText("");
+                    txtNumerocolumnas.setText("");
+                    txtNumerofilas.requestFocusInWindow();
                 } else {
                     tm.setRowCount(nf);
                     tm.setColumnCount(nc);
@@ -268,24 +276,36 @@ public class Principal extends javax.swing.JFrame {
         nc = tblTablaInicial.getColumnCount();
         Helper.limpiarTabla(tblTablaResultado);
         if (nc == nf) {
-            aux=true;
+            aux = true;
         }
         switch (op) {
             case 0:
-                if(aux)Helper.DiagonalSecundaria(tblTablaInicial, tblTablaResultado);
-                else Helper.mensaje(this, "La cantidad de filas y columnas deben ser iguales", "Error", 2);
+                if (aux) {
+                    Helper.DiagonalSecundaria(tblTablaInicial, tblTablaResultado);
+                } else {
+                    Helper.mensaje(this, "La cantidad de filas y columnas deben ser iguales", "Error", 2);
+                }
                 break;
             case 1:
-               if(aux)Helper.triangularSuperior(tblTablaInicial, tblTablaResultado);
-                else Helper.mensaje(this, "La cantidad de filas y columnas deben ser iguales", "Error", 2);
+                if (aux) {
+                    Helper.triangularSuperior(tblTablaInicial, tblTablaResultado);
+                } else {
+                    Helper.mensaje(this, "La cantidad de filas y columnas deben ser iguales", "Error", 2);
+                }
                 break;
             case 2:
-                if(aux)Helper.triangularInferior(tblTablaInicial, tblTablaResultado);
-                else Helper.mensaje(this, "La cantidad de filas y columnas deben ser iguales", "Error", 2);
+                if (aux) {
+                    Helper.triangularInferior(tblTablaInicial, tblTablaResultado);
+                } else {
+                    Helper.mensaje(this, "La cantidad de filas y columnas deben ser iguales", "Error", 2);
+                }
                 break;
             case 3:
-                if(aux)Helper.Traspuesta(tblTablaInicial, tblTablaResultado);
-                else Helper.mensaje(this, "La cantidad de filas y columnas deben ser iguales", "Error", 2);
+                if (aux) {
+                    Helper.Traspuesta(tblTablaInicial, tblTablaResultado);
+                } else {
+                    Helper.mensaje(this, "La cantidad de filas y columnas deben ser iguales", "Error", 2);
+                }
                 break;
             case 4:
                 Helper.LetraA(tblTablaInicial, tblTablaResultado);
@@ -312,15 +332,21 @@ public class Principal extends javax.swing.JFrame {
                 Helper.LetraI(tblTablaInicial, tblTablaResultado);
                 break;
             case 12:
-               if(aux)Helper.LetraN(tblTablaInicial, tblTablaResultado);
-                else Helper.mensaje(this, "La cantidad de filas y columnas deben ser iguales", "Error", 2);
+                if (aux) {
+                    Helper.LetraN(tblTablaInicial, tblTablaResultado);
+                } else {
+                    Helper.mensaje(this, "La cantidad de filas y columnas deben ser iguales", "Error", 2);
+                }
                 break;
             case 13:
                 Helper.LetraY(tblTablaInicial, tblTablaResultado);
                 break;
             case 14:
-                if(aux)Helper.LetraX(tblTablaInicial, tblTablaResultado);
-                else Helper.mensaje(this, "La cantidad de filas y columnas deben ser iguales", "Error", 2);
+                if (aux) {
+                    Helper.LetraX(tblTablaInicial, tblTablaResultado);
+                } else {
+                    Helper.mensaje(this, "La cantidad de filas y columnas deben ser iguales", "Error", 2);
+                }
                 break;
         }
         JButton botonesH[] = {cmdOperacion, cmdLimpiar};
@@ -347,7 +373,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void cmdLlenadoManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLlenadoManualActionPerformed
         int nf, nc, res, aux;
-        double n;
+        int n;
         boolean sw = true;
         nf = tblTablaInicial.getRowCount();
         nc = tblTablaInicial.getColumnCount();
@@ -356,7 +382,7 @@ public class Principal extends javax.swing.JFrame {
                 do {
                     aux = 1;
                     try {
-                        n = Double.parseDouble(Helper.recibirDatos(this, "Digite el valor en la posición: [" + i + "][" + j + "]"));
+                        n = Integer.parseInt(Helper.recibirDatos(this, "Digite el valor en la posición: [" + i + "][" + j + "]"));
                         tblTablaInicial.setValueAt(n, i, j);
                     } catch (NumberFormatException e) {
                         JOptionPane.showMessageDialog(this, "Digite la información correctamente", "Error", JOptionPane.ERROR_MESSAGE);
